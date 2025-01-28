@@ -12,11 +12,21 @@
     "typegen": "deno types > ./app/deno.d.ts && react-router typegen"
   },
   "exclude": ["app/", "build/"],
-  "fmt": { "exclude": ["!app/"] },
-  "lint": { "exclude": ["!app/", "app/deno.d.ts"] },
+  "fmt": {
+    "exclude": ["!app/"]
+  },
+  "lint": {
+    "exclude": ["!app/", "app/deno.d.ts"]
+  },
   "nodeModulesDir": "manual",
   "imports": {
     "@std/http": "jsr:@std/http@^1.0.11",
     "@std/path": "jsr:@std/path@^1.0.8"
+  },
+  "deploy": {
+    "project": "a2a822b9-5adc-46f5-9627-dc640d953560",
+    "exclude": ["**/node_modules"],
+    "include": [],
+    "entrypoint": "server.production.ts"
   }
 }
