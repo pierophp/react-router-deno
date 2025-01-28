@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "build": "NODE_ENV=production react-router build",
+    "dev": "react-router dev",
+    "format": "deno fmt",
+    "lint": "deno lint",
+    "start": "deno run -A ./server.production.ts",
+    "typecheck": {
+      "command": "deno check '**/*' && tsc",
+      "dependencies": ["typegen"]
+    },
+    "typegen": "deno types > ./app/deno.d.ts && react-router typegen"
+  },
+  "exclude": ["app/", "build/"],
+  "fmt": { "exclude": ["!app/"] },
+  "lint": { "exclude": ["!app/", "app/deno.d.ts"] },
+  "nodeModulesDir": "manual",
+  "imports": {
+    "@std/http": "jsr:@std/http@^1.0.11",
+    "@std/path": "jsr:@std/path@^1.0.8"
+  }
+}
