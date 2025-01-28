@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: main
+    branches: master
   pull_request:
-    branches: main
+    branches: master
 
 jobs:
   deploy:
@@ -23,21 +23,22 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Install dependencies
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install step
         run: "deno install"
 
       - name: Build step
-        run: "deno task build"
+        run: "deno run build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "huge-badger-89"
-          entrypoint: "server.production.ts"
-          root: ""
-          include: |
-            deno.json
-            deno.lock
-            build
-            package.json
-            server.production.ts
+          project: "react-router-deno-piero"
+          entrypoint: "server/index.js"
+          root: "build"
+          
+          
